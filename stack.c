@@ -1,11 +1,13 @@
 #include "monty.h"
-
-
-
-void set_lifo(stack_t **head, unsigned int lineNumber)
+/**
+ * f_stack - prints the top
+ * @head: stack head
+ * @counter: line_number
+ * Return: no return
+ */
+void f_stack(stack_t **head, unsigned int counter)
 {
-  (void)head;
-  (void)lineNumber;
-
-  bus.lifi = 0;
+	(void)head;
+	(void)counter;
+	bus.lifi = 0;
 }

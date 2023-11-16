@@ -1,39 +1,41 @@
 #include "monty.h"
-
-
-
-void handle_modulo(stack_t **head, char *argument, unsigned int instruction_number)
+/**
+ * f_mod - computes the rest of the division of the second
+ * top element of the stack by the top element of the stack
+ * @head: stack head
+ * @counter: line_number
+ * Return: no return
+ */
+void f_mod(stack_t **head, unsigned int counter)
 {
-	stack_t *current = *head;
-	int stack_length = 0, quotient;
+	stack_t *h;
+	int des = 0, mar;
 
-	while (current)
+	h = *head;
+	while (h)
 	{
-		current = current->next;
-		stack_length++;
+		h = h->next;
+		des++;
 	}
-
-	if (stack_length < 2)
+	if (des < 2)
 	{
-		fprintf(stderr, "L%d: can't mod, stack too short\n", instruction_number);
+		fprintf(stderr, "L%d: can't mod, stack too short\n", counter);
+		fclose(bus.file);
+		free(bus.content);
 		free_stack(*head);
-
 		exit(EXIT_FAILURE);
 	}
-
-	current = *head;
-	quotient = current->next->n % current->n;
-
-	if (current->n == 0)
+	h = *head;
+	if (h->n == 0)
 	{
-		fprintf(stderr, "L%d: division by zero\n", instruction_number);
+		fprintf(stderr, "L%d: division by zero\n", counter);
+		fclose(bus.file);
+		free(bus.content);
 		free_stack(*head);
-
 		exit(EXIT_FAILURE);
 	}
-
-	current->next->n = quotient;
-
-	*head = current->next;
-	free(current);
+	mar = h->next->n % h->n;
+	h->next->n = mar;
+	*head = h->next;
+	free(h);
 }

@@ -1,28 +1,21 @@
 #include "monty.h"
-
 /**
- * print_all_stack_values - Prints all values in a stack.
- * @head: Pointer to the head of the stack.
- * @counter: Unused parameter.
- *
- * Description: This function prints all the values in a stack, starting from
- * the top of the stack (head). The counter parameter is unused.
+ * f_pall - prints the stack
+ * @head: stack head
+ * @counter: no used
+ * Return: no return
  */
-
-void print_all_stack_values(stack_t **head, unsigned int counter)
+void f_pall(stack_t **head, unsigned int counter)
 {
-	stack_t *current = *head;
-
+	stack_t *h;
 	(void)counter;
 
-	if (current == NULL)
-	{
+	h = *head;
+	if (h == NULL)
 		return;
-	}
-
-	while (current)
+	while (h)
 	{
-		printf("%d\n", current->n);
-		current = current->next;
+		printf("%d\n", h->n);
+		h = h->next;
 	}
 }
