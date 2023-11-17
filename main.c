@@ -4,9 +4,6 @@
 #include <fcntl.h>
 
 
-char **op_toks = NULL;
-
-
 /**
  * main - the entry point for Monty Interp
  *
