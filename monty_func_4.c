@@ -21,7 +21,7 @@ void monty_rotl(stack_t **stack, unsigned int line_number)
 		return;
 
 
-	top = (*stack)->next;
+	top = (*stack) -> next;
 	bottom = (*stack)->next;
 	while (bottom->next != NULL)
 		bottom = bottom->next;
