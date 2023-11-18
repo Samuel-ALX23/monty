@@ -1,26 +1,27 @@
 #include "monty.h"
 
 /**
- * pstr - prints the contents of a stack_t stack as a string
- * @stack: stack pointer provided by main
- * @ignoredLineNumber: unused line number
- *
- * Return: void
+ * f_pstr - prints the string starting at the top of the stack
+ * followed by a new
+ * @head: stack head
+ * @counter: line_number
+ * Return: no return
  */
-void pstr(stack_t **stack, unsigned int ignoredLineNumber)
+
+void f_pstr(stack_t **head, unsigned int counter)
 {
-	(void) ignoredLineNumber;
+	stack_t *h;
+	(void)counter;
 
-	stack_t *currentNode = *stack;
-
-	while (currentNode)
+	h = *head;
+	while (h)
 	{
-		if (currentNode->n <= 0 || currentNode->n > 127)
+		if (h->n > 127 || h->n <= 0)
 		{
 			break;
 		}
-		putchar((char) currentNode->n);
-		currentNode = currentNode->next;
+		printf("%c", h->n);
+		h = h->next;
 	}
-	putchar('\n');
+	printf("\n");
 }
