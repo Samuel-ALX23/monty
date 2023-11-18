@@ -1,30 +1,43 @@
 #include "monty.h"
 
 /**
- * mod - computes the remainder of the division
- * @stack: stack pointer provided by main
- * @line_num: line number for error reporting
- *
- * Return: void
+ * f_mod - computes the rest of the division of the second
+ * top element of the stack by the top element of the stack
+ * @head: stack head
+ * @counter: line_number
+ * Return: no return
  */
-void mod(stack_t **stack, unsigned int line_num)
+
+void f_mod(stack_t **head, unsigned int counter)
 {
-	int remainder;
+	stack_t *h;
+	int len = 0, aux;
 
-	if (!stack || !*stack || !(*stack)->next)
+	h = *head;
+	while (h)
 	{
-		fprintf(stderr, "L%u: can't mod, stack too short\n", line_num);
-		exit(EXIT_FAILURE);
-		return;
+		h = h->next;
+		len++;
 	}
-	if (((*stack)->n) == 0)
+	if (len < 2)
 	{
-		fprintf(stderr, "L%u: division by zero\n", line_num);
+		fprintf(stderr, "L%d: can't mod, stack too short\n", counter);
+		fclose(bus.file);
+		free(bus.content);
+		free_stack(*head);
 		exit(EXIT_FAILURE);
-		return;
 	}
-
-	remainder = ((*stack)->next->n) % ((*stack)->n);
-	pop(stack, line_num);
-	(*stack)->n = remainder;
+	h = *head;
+	if (h->n == 0)
+	{
+		fprintf(stderr, "L%d: division by zero\n", counter);
+		fclose(bus.file);
+		free(bus.content);
+		free_stack(*head);
+		exit(EXIT_FAILURE);
+	}
+	aux = h->next->n % h->n;
+	h->next->n = aux;
+	*head = h->next;
+	free(h);
 }
